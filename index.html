@@ -5,148 +5,99 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>키오도움</title>
     <link rel="stylesheet" href="style.css">
+
     <style>
-        body {
-            margin: 0;
-            padding: 0;
-            background: #f5f6fa;
-            font-family: "Pretendard", sans-serif;
-            text-align: center;
-        }
-
-        .logo-box {
-            margin-top: 40px;
-        }
-        .logo-box img {
-            width: 140px;
-            border-radius: 50%;
-        }
-
-        h1 {
-            margin-top: 15px;
-            font-size: 28px;
-            font-weight: 700;
-        }
-
-        .subtitle {
-            color: #777;
-            margin-top: 5px;
-            margin-bottom: 25px;
-            font-size: 15px;
-        }
-
-        .notice-box {
-            width: 85%;
-            max-width: 650px;
-            background: #fff9e8;
-            padding: 18px;
-            border-radius: 12px;
-            margin: 0 auto 35px auto;
-            border: 1px solid #f0d9a5;
-            text-align: left;
-            line-height: 1.5;
-        }
-
-        .section-title {
-            font-size: 20px;
-            font-weight: 700;
-            margin-bottom: 25px;
-        }
-
-        .option-container {
+        /* 전체 화면 스플래시 */
+        #splash {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #ffffff;
             display: flex;
             justify-content: center;
-            gap: 20px;
-            flex-wrap: wrap;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.6s ease-out;
         }
 
-        .option-box {
-            background: white;
-            padding: 20px;
-            width: 260px;
-            border-radius: 16px;
-            border: 1px solid #dcdcdc;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-            text-align: left;
-            cursor: pointer;
-            transition: 0.15s;
+        /* 스플래시 로고 (큰 크기) */
+        #splash img {
+            width: 220px;
+            height: auto;
+            animation: logoFly 1.8s ease forwards;
         }
 
-        .option-box:hover {
-            transform: translateY(-3px);
+        /* 로고 이동 + 축소 애니메이션 */
+        @keyframes logoFly {
+            0% {
+                transform: translateY(0) scale(1);
+            }
+            70% {
+                transform: translateY(-180px) scale(0.5);
+            }
+            100% {
+                transform: translateY(-260px) scale(0.35);
+            }
         }
 
-        .option-box-title {
-            font-size: 17px;
-            font-weight: 700;
-            color: #246bfd;
-            margin-bottom: 10px;
+        /* 스플래시가 사라지면 투명 */
+        #splash.hide {
+            opacity: 0;
+            pointer-events: none;
         }
 
-        .option-box p {
-            font-size: 14px;
-            color: #333;
-            line-height: 1.45;
-        }
-
-        .small-guide {
+        /* 기존 로고 */
+        .main-logo {
             margin-top: 40px;
-            color: #888;
-            font-size: 13px;
-            margin-bottom: 60px;
-        }
-
-        /* 클릭 가능한 카드 */
-        a.card-link {
-            text-decoration: none;
-            color: inherit;
+            width: 120px;
         }
     </style>
 </head>
+
 <body>
 
-    <div class="logo-box">
+    <!-- ⭐ 스플래시 화면 -->
+    <div id="splash">
         <img src="logo.png" alt="키오도움 로고">
     </div>
 
-    <h1>키오도움</h1>
-    <div class="subtitle">어르신도 쉽게 쓰는 키오스크 도우미</div>
+    <!-- ⭐ 실제 메인 화면 -->
+    <div class="container">
+        <img src="logo.png" class="main-logo" alt="키오도움 로고">
+        <h1>키오도움</h1>
+        <p class="subtitle">어르신도 쉽게 쓰는 키오스크 도우미</p>
 
-    <div class="section-title">무엇을 해 보시겠어요?</div>
+        <h2>무엇을 해 보시겠어요?</h2>
 
-    <div class="option-container">
+        <div class="option-container">
+            <a class="option" href="ar.html">
+                <b>실제 가게에서 따라 하기 (AR 모드)</b><br>
+                휴대폰 카메라로 실제 키오스크 화면을 비추면<br>
+                무엇을 눌러야 할지 화면 위에 표시해 드립니다.
+            </a>
 
-        <a class="card-link" href="ar.html">
-            <div class="option-box">
-                <div class="option-box-title">실제 가게에서 따라 하기 (AR 모드)</div>
-                <p>
-                    휴대폰 카메라로<br>
-                    실제 키오스크 화면을 가져다 대면<br>
-                    무엇을 눌러야 할지<br>
-                    화면 위에 표시해 드립니다.
-                </p>
-            </div>
-        </a>
+            <a class="option" href="brand.html">
+                <b>미리 연습해 보기 (브랜드별 연습)</b><br>
+                롯데리아, 공차 같은 키오스크 화면을<br>
+                집이나 교실에서 연습할 수 있어요.
+            </a>
+        </div>
 
-        <a class="card-link" href="brand.html">
-            <div class="option-box">
-                <div class="option-box-title">미리 연습해 보기 (브랜드별 연습)</div>
-                <p>
-                    집이나 교실에서<br>
-                    롯데리아, 공차 같은 키오스크 화면을<br>
-                    천천히 보며<br>
-                    혼자서도 연습할 수 있습니다.
-                </p>
-            </div>
-        </a>
-
+        <p class="bottom-text">
+            화면 글자가 너무 작으면<br>
+            휴대폰을 가로로 돌려 보거나<br>
+            화면을 두 손가락으로 벌려서 크게 보세요.
+        </p>
     </div>
 
-    <div class="small-guide">
-        화면 글자가 너무 작으면<br>
-        휴대폰을 가로로 돌려 보거나<br>
-        화면을 두 손가락으로 벌려서 크게 보세요.
-    </div>
+<script>
+    // 2초 뒤에 스플래시 사라짐
+    setTimeout(() => {
+        document.getElementById("splash").classList.add("hide");
+    }, 2000);
+</script>
 
 </body>
 </html>
