@@ -6,75 +6,153 @@
     <title>키오도움</title>
     <link rel="stylesheet" href="style.css">
     <style>
-        /* 로고 애니메이션 */
-        #splash-logo {
-            width: 230px;
-            opacity: 1;
-            transition: all 1.2s ease;
-            position: absolute;
-            top: 40%;
-            left: 50%;
-            transform: translate(-50%, -50%) scale(1);
-        }
-
-        /* 2초 후 축소된 로고 */
-        .shrink {
-            width: 80px;
-            top: 120px;
-            transform: translate(-50%, 0) scale(1);
-        }
-
-        /* 본문 컨텐츠 처음엔 숨김 */
-        #main-content {
-            opacity: 0;
-            transition: opacity 1s ease;
-        }
-
-        #main-content.show {
-            opacity: 1;
-        }
-
-        .description {
-            font-size: 17px;
-            color: #444;
-            margin-bottom: 25px;
+        body {
+            margin: 0;
+            padding: 0;
+            background: #f5f6fa;
+            font-family: "Pretendard", sans-serif;
             text-align: center;
-            line-height: 1.6;
+        }
+
+        .logo-box {
+            margin-top: 40px;
+        }
+        .logo-box img {
+            width: 140px;
+            border-radius: 50%;
+        }
+
+        h1 {
+            margin-top: 15px;
+            font-size: 28px;
+            font-weight: 700;
+        }
+
+        .subtitle {
+            color: #777;
+            margin-top: 5px;
+            margin-bottom: 25px;
+            font-size: 15px;
+        }
+
+        .notice-box {
+            width: 85%;
+            max-width: 650px;
+            background: #fff9e8;
+            padding: 18px;
+            border-radius: 12px;
+            margin: 0 auto 35px auto;
+            border: 1px solid #f0d9a5;
+            text-align: left;
+            line-height: 1.5;
+        }
+
+        .section-title {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 25px;
+        }
+
+        .option-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .option-box {
+            background: white;
+            padding: 20px;
+            width: 260px;
+            border-radius: 16px;
+            border: 1px solid #dcdcdc;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            text-align: left;
+            cursor: pointer;
+            transition: 0.15s;
+        }
+
+        .option-box:hover {
+            transform: translateY(-3px);
+        }
+
+        .option-box-title {
+            font-size: 17px;
+            font-weight: 700;
+            color: #246bfd;
+            margin-bottom: 10px;
+        }
+
+        .option-box p {
+            font-size: 14px;
+            color: #333;
+            line-height: 1.45;
+        }
+
+        .small-guide {
+            margin-top: 40px;
+            color: #888;
+            font-size: 13px;
+            margin-bottom: 60px;
+        }
+
+        /* 클릭 가능한 카드 */
+        a.card-link {
+            text-decoration: none;
+            color: inherit;
         }
     </style>
 </head>
 <body>
 
-    <!-- 처음 2초 동안 크게 보이는 로고 -->
-    <img id="splash-logo" src="그림1.png" alt="키오도움 로고">
-
-    <!-- 실제 본문 -->
-    <div id="main-content">
-        <img src="그림1.png" alt="키오도움 로고" class="main-logo" style="width: 90px; margin-top: 20px;">
-        <h1>키오도움</h1>
-
-        <p class="description">
-            어르신도 쉽고 빠르게 사용할 수 있는<br>
-            키오스크 안내 서비스입니다.<br><br>
-            아래에서 원하시는 기능을 선택해주세요.
-        </p>
-
-        <a href="ar.html" class="menu-button">AR 기반 실제 키오스크<br>가이드 모드</a>
-        <a href="brand.html" class="menu-button">브랜드별 키오스크<br>학습 모드</a>
+    <div class="logo-box">
+        <img src="그림1.png" alt="키오도움 로고">
     </div>
 
-    <script>
-        // 2초 후 로고 축소 + 본문 표시
-        window.onload = () => {
-            const logo = document.getElementById("splash-logo");
-            const main = document.getElementById("main-content");
+    <h1>키오도움</h1>
+    <div class="subtitle">어르신도 쉽게 쓰는 키오스크 도우미</div>
 
-            setTimeout(() => {
-                logo.classList.add("shrink");
-                main.classList.add("show");
-            }, 1500);
-        };
-    </script>
+    <div class="notice-box">
+        <b>화면에 보이는 큰 버튼 두 개 중에서</b><br>
+        실제 가게에서 바로 따라 하고 싶으시면 <b>왼쪽 버튼</b>을,<br>
+        미리 연습만 해보고 싶으시면 <b>오른쪽 버튼</b>을 눌러 주세요.
+    </div>
+
+    <div class="section-title">무엇을 해 보시겠어요?</div>
+
+    <div class="option-container">
+
+        <a class="card-link" href="ar.html">
+            <div class="option-box">
+                <div class="option-box-title">실제 가게에서 따라 하기 (AR 모드)</div>
+                <p>
+                    휴대폰 카메라로<br>
+                    실제 키오스크 화면을 가져다 대면<br>
+                    무엇을 눌러야 할지<br>
+                    화면 위에 표시해 드립니다.
+                </p>
+            </div>
+        </a>
+
+        <a class="card-link" href="brand.html">
+            <div class="option-box">
+                <div class="option-box-title">미리 연습해 보기 (브랜드별 연습)</div>
+                <p>
+                    집이나 교실에서<br>
+                    롯데리아, 공차 같은 키오스크 화면을<br>
+                    천천히 보며<br>
+                    혼자서도 연습할 수 있습니다.
+                </p>
+            </div>
+        </a>
+
+    </div>
+
+    <div class="small-guide">
+        화면 글자가 너무 작으면<br>
+        휴대폰을 가로로 돌려 보거나<br>
+        화면을 두 손가락으로 벌려서 크게 보세요.
+    </div>
 
 </body>
 </html>
