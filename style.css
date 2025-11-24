@@ -9,34 +9,26 @@ body {
     font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo",
         "Noto Sans KR", system-ui, sans-serif;
     color: #111;
-}
-
-/* 전체 레이아웃 */
-.page {
-    max-width: 960px;
-    margin: 0 auto;
-    padding: 24px 16px 40px;
+    text-align: center;   /* 🟦 전체 중앙 정렬 */
 }
 
 /* 제목 */
 h1 {
     font-size: 26px;
-    text-align: center;
-    margin-bottom: 10px;
+    margin-top: 28px;
     font-weight: 700;
     color: #222;
 }
 
 /* 카메라 박스 */
 #kiosk-container {
-    margin: 24px auto 0;
+    margin: 24px auto;
     width: 90%;
     max-width: 620px;
-
+    height: 320px; /* 🟦 고정 높이 추가 (박스 보이도록) */
     border: 3px solid #c9d8f0;
     background-color: #ffffff;
     border-radius: 16px;
-
     position: relative;
     overflow: hidden;
 }
@@ -44,17 +36,16 @@ h1 {
 /* 카메라 영상 */
 #video {
     width: 100%;
-    height: auto;
+    height: 100%;
+    object-fit: cover;
     display: block;
-    position: relative;
-    z-index: 1;
 }
 
 /* 스캔 오버레이 */
 #ar-overlay {
     position: absolute;
-    top: 0;
-    left: 0;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
     z-index: 2;
 }
 
@@ -65,36 +56,21 @@ h1 {
     background-repeat: no-repeat;
 }
 
-/* 영상 숨김 */
-#video.hidden {
-    display: none;
-}
-
-/* 강조 박스 */
-.ar-arrow {
-    border: 4px solid #ff3333;
-    border-radius: 12px;
-    box-shadow: 0 0 10px rgba(255, 50, 50, 0.3);
-}
-
-/* 버튼 */
+/* 버튼 공통 */
 button {
     display: block;
     width: 85%;
     max-width: 500px;
     margin: 14px auto 0;
     padding: 16px 0;
-
     font-size: 20px;
     font-weight: 600;
-
     border-radius: 14px;
     border: none;
-
     cursor: pointer;
 }
 
-/* 카메라 시작 */
+/* 카메라 버튼 */
 #cameraButton {
     background: #3c8dff;
     color: white;
@@ -112,12 +88,32 @@ button {
     color: white;
 }
 
-/* 텍스트 출력 */
+/* 결과 텍스트 */
 #ocr-output,
 #voice-output {
-    margin-top: 16px;
+    margin-top: 12px;
     font-size: 18px;
     font-weight: 600;
     text-align: center;
-    min-height: 30px;
+}
+
+/* 회색 구분선 */
+hr {
+    margin-top: 32px;
+}
+
+/* 뒤로가기 */
+.back-link {
+    margin-top: 28px;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.back-link a {
+    color: #265bbd;
+    text-decoration: none;
+}
+
+.back-link a:hover {
+    text-decoration: underline;
 }
