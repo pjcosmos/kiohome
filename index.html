@@ -1,185 +1,125 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>키오도움 - 쉬운 키오스크 안내</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>키오도움</title>
+    <link rel="stylesheet" href="style.css">
+
+    <!-- ⭐ 스플래시 + 로고 애니메이션 CSS -->
     <style>
-        /* 전체 화면 스타일 */
-        body {
-            margin: 0;
-            padding: 0;
-            font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo",
-                "Noto Sans KR", system-ui, sans-serif;
+        /* 스플래시 전체 화면 */
+        #splash {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%;
+            height: 100%;
             background: #f5f7fb;
-            color: #111;
-        }
-
-        .page {
-            max-width: 960px;
-            margin: 0 auto;
-            padding: 24px 16px 40px;
-        }
-
-        /* 로고 + 제목 영역 */
-        .header {
-            text-align: center;
-            margin-bottom: 16px;
-        }
-
-        .logo {
-            width: 140px;
-            max-width: 50vw;
-            margin: 0 auto 8px; /* 로고랑 글자 간격 줄임 */
-            display: block;
-        }
-
-        .title-main {
-            font-size: 28px;
-            font-weight: 700;
-        }
-
-        .title-sub {
-            margin-top: 8px;
-            font-size: 18px;
-            color: #444;
-        }
-
-        /* “어떻게 쓰는지” 안내 문구 */
-        .help-text {
-            margin-top: 20px;
-            padding: 14px 16px;
-            background: #fff7e3;
-            border-radius: 14px;
-            border: 1px solid #ffd17a;
-            font-size: 17px;
-            line-height: 1.6;
-        }
-
-        .help-text strong {
-            font-weight: 700;
-        }
-
-        /* 탭(버튼) 영역 */
-        .mode-title {
-            margin-top: 28px;
-            margin-bottom: 12px;
-            font-size: 20px;
-            font-weight: 600;
-        }
-
-        .tab-wrapper {
             display: flex;
-            flex-direction: column;
-            gap: 18px;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.8s ease;
         }
 
-        @media (min-width: 720px) {
-            .tab-wrapper {
-                flex-direction: row;
-            }
+        /* 로고 기본 상태(중앙 크게) */
+        #splash-logo {
+            width: 260px;
+            transition: transform 1s ease, top 1s ease, left 1s ease;
         }
 
-        .tab-card {
-            flex: 1;
-            padding: 18px 18px;
-            background: #ffffff;
-            border-radius: 18px;
-            border: 2px solid #d0e4ff;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.06);
-            cursor: pointer;
-            text-align: left;
-            transition: transform 0.15s ease, box-shadow 0.15s ease,
-                border-color 0.15s ease, background 0.15s ease;
+        /* 축소 + 상단 이동된 상태 */
+        #splash-logo.shrink {
+            transform-origin: center;
+            position: absolute;
+            top: 40px;
+            left: 50%;
+            transform: translateX(-50%) scale(0.35);
         }
 
-        .tab-card:focus,
-        .tab-card:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
-            border-color: #3c8dff;
-            background: #f7fbff;
-            outline: none;
+        /* 홈 화면 로고 */
+        .top-logo {
+            width: 120px;
+            display: block;
+            margin: 130px auto 0 auto;
         }
 
-        .tab-label {
-            font-size: 20px;       /* 버튼 제목 크게 */
-            font-weight: 700;
-            margin-bottom: 8px;
-        }
-
-        .tab-label strong {
-            color: #265bbd;
-        }
-
-        .tab-desc {
-            font-size: 16px;
-            line-height: 1.6;
-            color: #333;
-        }
-
-        /* 발 밑 안내 */
-        .footer-note {
-            margin-top: 28px;
-            font-size: 15px;
-            color: #666;
+        h1 {
             text-align: center;
-            line-height: 1.6;
+            font-size: 28px;
+            margin-top: 10px;
+        }
+
+        /* 탭 버튼 스타일 */
+        .tabs {
+            width: 90%;
+            max-width: 400px;
+            margin: 40px auto;
+        }
+
+        .tab {
+            background: #3d8bfd;
+            color: white;
+            padding: 22px;
+            margin-top: 20px;
+            border-radius: 16px;
+            text-align: center;
+            font-size: 22px;
+            font-weight: 700;
+            cursor: pointer;
+            line-height: 1.4;
+        }
+
+        .tab:hover {
+            background: #1f6ae0;
         }
     </style>
 </head>
+
 <body>
-<div class="page">
-    <!-- 로고 + 제목 -->
-    <header class="header">
-        <!-- ↓ 여기 src에 실제 올린 로고 파일 이름 넣어주면 됨 -->
-        <img src="그림1.png" alt="키오도움 로고" class="logo" />
 
-        <div class="title-main">키오도움</div>
-        <div class="title-sub">어르신도 쉽게 쓰는 키오스크 도우미</div>
-    </header>
-
-
-    <!-- 모드 선택 -->
-    <section>
-        <div class="mode-title">무엇을 해 보시겠어요?</div>
-
-        <div class="tab-wrapper">
-
-            <!-- AR 실제 키오스크 가이드 -->
-            <button class="tab-card" onclick="location.href='ar.html'">
-                <div class="tab-label">
-                    <strong>실제 가게에서</strong> 따라 하기 (AR 모드)
-                </div>
-                <div class="tab-desc">
-                    휴대폰 카메라를<br />
-                    <strong>실제 키오스크 화면</strong>에 가져다 대면<br />
-                    무엇을 눌러야 할지<br />
-                    화면 위에 표시해 드립니다.
-                </div>
-            </button>
-
-            <!-- 브랜드별 학습 모드 -->
-            <button class="tab-card" onclick="location.href='brand.html'">
-                <div class="tab-label">
-                    <strong>미리 연습해 보기</strong> (브랜드별 연습)
-                </div>
-                <div class="tab-desc">
-                    집이나 교실에서<br />
-                    <strong>롯데리아, 공차 같은 키오스크 화면</strong>을<br />
-                    천천히 눌러 보며<br />
-                    혼자서도 연습할 수 있습니다.
-                </div>
-            </button>
-
-        </div>
-    </section>
-
-    <div class="footer-note">
-        화면 글자가 너무 작으면<br />
-        휴대폰을 가로로 돌려 보거나<br />
-        화면을 두 손가락으로 벌려서 크게 보세요.
+    <!-- ⭐ 스플래시 화면 -->
+    <div id="splash">
+        <img id="splash-logo" src="그림1.png" alt="키오도움 로고">
     </div>
-</div>
+
+    <!-- ⭐ 메인 홈 화면 -->
+    <img src="그림1.png" class="top-logo" alt="키오도움 로고">
+
+    <h1>키오도움</h1>
+
+    <div class="tabs">
+        <div class="tab" onclick="location.href='ar.html'">
+            AR 기반 실제 키오스크<br>가이드 모드
+        </div>
+
+        <div class="tab" onclick="location.href='brand.html'">
+            브랜드별 키오스크<br>학습 모드
+        </div>
+    </div>
+
+    <!-- ⭐ 스플래시 애니메이션 JS -->
+    <script>
+        window.onload = () => {
+            const splash = document.getElementById("splash");
+            const logo = document.getElementById("splash-logo");
+
+            // 1초 뒤 로고 축소 이동
+            setTimeout(() => {
+                logo.classList.add("shrink");
+            }, 1000);
+
+            // 2.3초 뒤 스플래시 투명하게
+            setTimeout(() => {
+                splash.style.opacity = "0";
+            }, 2300);
+
+            // 3초 뒤 스플래시 완전히 없앰
+            setTimeout(() => {
+                splash.style.display = "none";
+            }, 3000);
+        };
+    </script>
+
 </body>
 </html>
