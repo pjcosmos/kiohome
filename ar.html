@@ -3,186 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>실제 키오스크 따라 하기 (AR) - 키오도움</title>
-
-    <!-- 외부 스타일 -->
+    <title>AR 키오스크 가이드</title>
     <link rel="stylesheet" href="style.css">
-
-    <style>
-        /* ===== 어르신 UI 스타일 추가 ===== */
-        body {
-            background: #f5f7fb;
-            font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo",
-                "Noto Sans KR", system-ui, sans-serif;
-            margin: 0;
-            padding: 0;
-            color: #111;
-        }
-
-        .page {
-            max-width: 960px;
-            margin: 0 auto;
-            padding: 24px 16px 40px;
-        }
-
-        .header {
-            text-align: center;
-            margin-bottom: 20px;
-        }
-
-        .logo {
-            width: 140px;
-            max-width: 50vw;
-            margin-bottom: 8px;
-        }
-
-        .title-main {
-            font-size: 26px;
-            font-weight: 700;
-        }
-
-        .title-sub {
-            margin-top: 8px;
-            font-size: 18px;
-            color: #444;
-        }
-
-        .help-box {
-            margin-top: 20px;
-            padding: 16px;
-            background: #fff7e3;
-            border: 1px solid #ffd17a;
-            border-radius: 14px;
-            font-size: 17px;
-            line-height: 1.6;
-        }
-
-        /* 카메라 & 스캔 버튼 안내 */
-        #controls {
-            margin-top: 24px;
-            text-align: center;
-        }
-
-        button {
-            font-size: 20px;
-            padding: 14px 24px;
-            border-radius: 12px;
-            border: none;
-            cursor: pointer;
-        }
-
-        #cameraButton {
-            background: #3c8dff;
-            color: white;
-            margin-bottom: 14px;
-            width: 80%;
-        }
-
-        #scanButton {
-            width: 80%;
-            background: #5cb85c;
-            color: white;
-        }
-
-        #ocr-output {
-            font-size: 18px;
-            margin-top: 20px;
-            color: #000;
-            font-weight: 600;
-        }
-
-        /* 카메라 표시 영역 */
-        #kiosk-container {
-            margin-top: 24px;
-            width: 100%;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-            border: 3px solid #c9d8f0;
-            border-radius: 14px;
-            background: #fff;
-            overflow: hidden;
-        }
-
-        /* 음성 안내 영역 */
-        #voice-controls {
-            margin-top: 30px;
-            text-align: center;
-        }
-
-        #voiceButton {
-            background: #ff7c3c;
-            color: white;
-            width: 80%;
-        }
-
-        #voice-output {
-            margin-top: 12px;
-            font-size: 18px;
-            font-weight: 600;
-        }
-
-        .back-link {
-            margin-top: 28px;
-            font-size: 16px;
-            text-align: center;
-        }
-
-        .back-link a {
-            font-weight: bold;
-            color: #265bbd;
-            text-decoration: none;
-        }
-    </style>
-
 </head>
 <body>
-<div class="page">
-    <!-- 상단 제목 -->
-    <div class="header">
-        <img src="그림1.png" class="logo" alt="로고">
-        <div class="title-main">실제 키오스크 따라 하기</div>
-        <div class="title-sub">휴대폰 카메라로 가게 키오스크를 비춰주세요</div>
-    </div>
-
-    <!-- 사용법 안내 -->
-    <div class="help-box">
-        <strong>❗ 이렇게 하시면 됩니다</strong><br>
-        1) 아래 파란색 <strong>카메라 켜기</strong> 버튼을 누르세요.<br>
-        2) 가게 키오스크 화면을 휴대폰으로 비추세요.<br>
-        3) 초록색 <strong>스캔</strong> 버튼을 누르면, 눌러야 할 위치에 <strong>빨간 표시</strong>가 뜹니다.
-    </div>
-
-    <!-- 카메라 & 스캔 -->
-    <div id="controls">
-        <button id="cameraButton">카메라 켜기</button>
-        <br>
-        <button id="scanButton" style="display:none;">스캔</button>
-
-        <p id="ocr-output">아직 카메라가 꺼져 있습니다.</p>
-    </div>
-
-    <!-- 비디오(카메라) 영역 -->
+    <h1>AR 키오스크 가이드</h1>
     <div id="kiosk-container">
-        <video id="video" playsinline autoplay muted></video>
+        <video id="video" playsinline autoplay muted loop></video>
         <div id="ar-overlay"></div>
     </div>
-
-    <!-- 음성 인식 -->
+    <div id="controls">
+        <button id="cameraButton">카메라 켜기</button>
+        <button id="scanButton" style="display: none;">스캔</button>
+        <p>인식된 텍스트: <span id="ocr-output"></span></p>
+    </div>
+    <hr>
     <div id="voice-controls">
-        <button id="voiceButton">음성으로 안내 받기</button>
-        <p id="voice-output"></p>
+        <button id="voiceButton">음성인식 시작</button>
+        <p>음성 명령: <span id="voice-output"></span></p>
     </div>
-
-    <!-- 뒤로가기 -->
-    <div class="back-link">
-        처음 화면으로 가려면<br>
-        <a href="index.html">여기를 눌러 주세요.</a>
-    </div>
-</div>
-
-<!-- 기존 JS 연결 -->
-<script src="script.js"></script>
-
+    <script src="https://cdn.jsdelivr.net/npm/tesseract.js@v5/dist/tesseract.min.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
