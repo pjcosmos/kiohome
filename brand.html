@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>브랜드별 키오스크 학습 모드</title>
+
+    <style>
+        body {
+            margin: 0;
+            padding: 40px 20px;
+            background: #0d0d0d;
+            font-family: Pretendard, sans-serif;
+            color: #e8faff;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 28px;
+            margin-bottom: 30px;
+            color: #9be8ff;
+        }
+
+        .brand-container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+        .brand-btn {
+            width: 260px;
+            padding: 18px 0;
+            background: #1b1f29;
+            border: 2px solid #3ce2ff66;
+            border-radius: 14px;
+            font-size: 20px;
+            cursor: pointer;
+            color: #d8f7ff;
+            transition: 0.25s ease;
+        }
+
+        .brand-btn:hover {
+            background: #2e3441;
+            border-color: #3ce2ff;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>브랜드별 키오스크 학습 모드</h1>
+    <p>학습할 브랜드를 선택하세요</p>
+
+    <div class="brand-container">
+        <button class="brand-btn" onclick="location.href='lotte.html'">
+            롯데리아
+        </button>
+
+        <button class="brand-btn" onclick="location.href='gongcha.html'">
+            공차
+        </button>
+    </div>
+</body>
+</html>
