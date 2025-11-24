@@ -27,18 +27,7 @@ h1 {
     color: #222;
 }
 
-/* 안내문 */
-.help-box {
-    margin-top: 16px;
-    padding: 16px;
-    background: #fff7e3;
-    border: 1px solid #ffd17a;
-    border-radius: 14px;
-    font-size: 17px;
-    line-height: 1.6;
-}
-
-/* 카메라 영역 */
+/* 카메라 박스 */
 #kiosk-container {
     margin: 24px auto 0;
     width: 90%;
@@ -52,7 +41,7 @@ h1 {
     overflow: hidden;
 }
 
-/* 카메라 */
+/* 카메라 영상 */
 #video {
     width: 100%;
     height: auto;
@@ -76,12 +65,12 @@ h1 {
     background-repeat: no-repeat;
 }
 
-/* 숨김 모드 */
+/* 영상 숨김 */
 #video.hidden {
     display: none;
 }
 
-/* 강조 박스(인식된 위치 표시) */
+/* 강조 박스 */
 .ar-arrow {
     border: 4px solid #ff3333;
     border-radius: 12px;
@@ -105,7 +94,7 @@ button {
     cursor: pointer;
 }
 
-/* 카메라 버튼 */
+/* 카메라 시작 */
 #cameraButton {
     background: #3c8dff;
     color: white;
@@ -117,13 +106,13 @@ button {
     color: white;
 }
 
-/* 음성 인식 버튼 */
+/* 음성 버튼 */
 #voiceButton {
     background: #ff7c3c;
     color: white;
 }
 
-/* 결과 텍스트 */
+/* 텍스트 출력 */
 #ocr-output,
 #voice-output {
     margin-top: 16px;
@@ -131,21 +120,4 @@ button {
     font-weight: 600;
     text-align: center;
     min-height: 30px;
-}
-
-/* 뒤로가기 */
-.back-link {
-    margin-top: 28px;
-    text-align: center;
-    font-size: 16px;
-}
-
-.back-link a {
-    color: #265bbd;
-    font-weight: 700;
-    text-decoration: none;
-}
-
-.back-link a:hover {
-    text-decoration: underline;
 }
