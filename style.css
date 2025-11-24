@@ -1,0 +1,82 @@
+body {
+    font-family: sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0;
+    padding: 20px;
+    background-color: #f0f0f0;
+}
+
+h1 {
+    color: #333;
+}
+
+#kiosk-container {
+    position: relative;
+    width: 80vw;
+    max-width: 600px;
+    border: 2px solid #333;
+    background-color: #fff;
+}
+
+#video { position: relative; z-index: 1; }
+#ar-overlay { position: absolute; z-index: 2; }
+
+
+#controls {
+    margin-top: 20px;
+    text-align: center;
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    margin: 0 5px;
+}
+
+#scanButton {
+    background-color: #5cb85c;
+    color: white;
+    border-color: #4cae4c;
+}
+
+#ocr-output {
+    margin-top: 15px;
+    font-weight: bold;
+    color: #333;
+    min-height: 50px;
+}
+
+/* === 스냅샷 고정 모드 === */
+#ar-overlay.frozen {
+    /* recognizeTextAndFreeze()에서 설정한 dataURL을 배경으로 씀 */
+    background-size: cover;      /* 컨테이너 꽉 채우기 */
+    background-position: center; /* 중앙 정렬 */
+    background-repeat: no-repeat;
+}
+
+/* 고정 모드에서 비디오 숨김 */
+#video.hidden {
+    display: none;
+}
+
+/* (선택) 강조 박스 가독성 강화 */
+.ar-arrow {
+    border: 3px solid #ff0000;
+    box-sizing: border-box;
+    transition: all 0.2s ease-in-out;
+    border-radius: 10px;                  /* 모서리 살짝 둥글게 */
+    box-shadow: 0 0 0 3px rgba(255,0,0,.15),
+                0 6px 14px rgba(0,0,0,.25); /* 외곽광+그림자로 배경과 분리 */
+}
+
+.ar-arrow:hover {
+    transform: scale(1.05);
+    background-color: rgba(255, 0, 0, 0.2);
+}
+
+
