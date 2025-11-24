@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>KioDoum Homepage</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Pretendard, sans-serif;
+            background: #0d0d0d;
+            color: #e8faff;
+        }
+        .container {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            text-align: center;
+        }
+        .logo {
+            width: 160px;
+            margin: 0 auto 10px;
+        }
+        .tabs {
+            display: flex;
+            justify-content: center;
+            margin-top: 40px;
+            gap: 20px;
+        }
+        .tab {
+            padding: 16px 28px;
+            background: #1b1f29;
+            border: 1px solid #3ce2ff55;
+            border-radius: 14px;
+            cursor: pointer;
+            transition: 0.25s ease;
+            font-size: 18px;
+        }
+        .tab:hover {
+            background: #2f3442;
+            border-color: #3ce2ff;
+        }
+        .section-title {
+            margin-top: 60px;
+            font-size: 26px;
+            color: #9be8ff;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img class="logo" src="그림1.png" alt="KioDoum Logo" />
+
+        <h1>KioDoum</h1>
+        <p>키오스크 사용이 어려운 사람들을 위한 AR 기반 안내 서비스</p>
+
+        <div class="tabs">
+            <div class="tab">AR 기반 실제 키오스크 가이드 모드</div>
+            <div class="tab">브랜드별 키오스크 학습 모드</div>
+        </div>
+
+        <div class="section-title">모드를 선택하여 시작하세요</div>
+    </div>
+</body>
+</html>
