@@ -5,119 +5,74 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>키오도움</title>
     <link rel="stylesheet" href="style.css">
-
-    <!-- ⭐ 스플래시 + 로고 애니메이션 CSS -->
     <style>
-        /* 스플래시 전체 화면 */
-        #splash {
-            position: fixed;
-            top: 0; left: 0;
-            width: 100%;
-            height: 100%;
-            background: #f5f7fb;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 9999;
-            transition: opacity 0.8s ease;
-        }
-
-        /* 로고 기본 상태(중앙 크게) */
+        /* 로고 애니메이션 */
         #splash-logo {
-            width: 260px;
-            transition: transform 1s ease, top 1s ease, left 1s ease;
-        }
-
-        /* 축소 + 상단 이동된 상태 */
-        #splash-logo.shrink {
-            transform-origin: center;
+            width: 230px;
+            opacity: 1;
+            transition: all 1.2s ease;
             position: absolute;
-            top: 40px;
+            top: 40%;
             left: 50%;
-            transform: translateX(-50%) scale(0.35);
+            transform: translate(-50%, -50%) scale(1);
         }
 
-        /* 홈 화면 로고 */
-        .top-logo {
-            width: 120px;
-            display: block;
-            margin: 130px auto 0 auto;
+        /* 2초 후 축소된 로고 */
+        .shrink {
+            width: 80px;
+            top: 120px;
+            transform: translate(-50%, 0) scale(1);
         }
 
-        h1 {
+        /* 본문 컨텐츠 처음엔 숨김 */
+        #main-content {
+            opacity: 0;
+            transition: opacity 1s ease;
+        }
+
+        #main-content.show {
+            opacity: 1;
+        }
+
+        .description {
+            font-size: 17px;
+            color: #444;
+            margin-bottom: 25px;
             text-align: center;
-            font-size: 28px;
-            margin-top: 10px;
-        }
-
-        /* 탭 버튼 스타일 */
-        .tabs {
-            width: 90%;
-            max-width: 400px;
-            margin: 40px auto;
-        }
-
-        .tab {
-            background: #3d8bfd;
-            color: white;
-            padding: 22px;
-            margin-top: 20px;
-            border-radius: 16px;
-            text-align: center;
-            font-size: 22px;
-            font-weight: 700;
-            cursor: pointer;
-            line-height: 1.4;
-        }
-
-        .tab:hover {
-            background: #1f6ae0;
+            line-height: 1.6;
         }
     </style>
 </head>
-
 <body>
 
-    <!-- ⭐ 스플래시 화면 -->
-    <div id="splash">
-        <img id="splash-logo" src="그림1.png" alt="키오도움 로고">
+    <!-- 처음 2초 동안 크게 보이는 로고 -->
+    <img id="splash-logo" src="그림1.png" alt="키오도움 로고">
+
+    <!-- 실제 본문 -->
+    <div id="main-content">
+        <img src="그림1.png" alt="키오도움 로고" class="main-logo" style="width: 90px; margin-top: 20px;">
+        <h1>키오도움</h1>
+
+        <p class="description">
+            어르신도 쉽고 빠르게 사용할 수 있는<br>
+            키오스크 안내 서비스입니다.<br><br>
+            아래에서 원하시는 기능을 선택해주세요.
+        </p>
+
+        <a href="ar.html" class="menu-button">AR 기반 실제 키오스크<br>가이드 모드</a>
+        <a href="brand.html" class="menu-button">브랜드별 키오스크<br>학습 모드</a>
     </div>
 
-    <!-- ⭐ 메인 홈 화면 -->
-    <img src="그림1.png" class="top-logo" alt="키오도움 로고">
-
-    <h1>키오도움</h1>
-
-    <div class="tabs">
-        <div class="tab" onclick="location.href='ar.html'">
-            AR 기반 실제 키오스크<br>가이드 모드
-        </div>
-
-        <div class="tab" onclick="location.href='brand.html'">
-            브랜드별 키오스크<br>학습 모드
-        </div>
-    </div>
-
-    <!-- ⭐ 스플래시 애니메이션 JS -->
     <script>
+        // 2초 후 로고 축소 + 본문 표시
         window.onload = () => {
-            const splash = document.getElementById("splash");
             const logo = document.getElementById("splash-logo");
+            const main = document.getElementById("main-content");
 
-            // 1초 뒤 로고 축소 이동
             setTimeout(() => {
                 logo.classList.add("shrink");
-            }, 1000);
-
-            // 2.3초 뒤 스플래시 투명하게
-            setTimeout(() => {
-                splash.style.opacity = "0";
-            }, 2300);
-
-            // 3초 뒤 스플래시 완전히 없앰
-            setTimeout(() => {
-                splash.style.display = "none";
-            }, 3000);
+                main.classList.add("show");
+            }, 1500);
         };
     </script>
 
