@@ -221,9 +221,19 @@
     </div>
 
     <script>
+    // 스플래시를 이전에 본 적 있는지 확인
+    const splashSeen = localStorage.getItem("splashShown");
+
+    if (splashSeen) {
+        // 이미 본 적 있으면 스플래시 바로 숨기기
+        document.getElementById("splash").style.display = "none";
+    } else {
+        // 처음 방문 → 스플래시 보여주고, 이후에는 안 보이게 기록
         setTimeout(() => {
             document.getElementById("splash").classList.add("hide");
+            localStorage.setItem("splashShown", "true");
         }, 1800);
+    }
     </script>
 
 </body>
