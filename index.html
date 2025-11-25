@@ -221,32 +221,25 @@
     </div>
 
     <script>
-// 뒤로가기 여부 판단
-const isBack = performance.getEntriesByType("navigation")[0].type === "back_forward";
+// 1) 다른 화면에서 "홈 버튼"으로 이동해온 경우 확인
+const fromPage = sessionStorage.getItem("navigateFromPage");
 
-if (isBack) {
-    // 🔙 뒤로 오면 스플래시 절대 안 나오게
+// 2) 뒤로가기 탐지
+const navType = performance.getEntriesByType("navigation")[0].type;
+const isBack = (navType === "back_forward");
+
+if (fromPage || isBack) {
+    // 스플래시 안 보이게
     document.getElementById("splash").style.display = "none";
+
+    // 플래그 제거
+    sessionStorage.removeItem("navigateFromPage");
+
 } else {
-    // 🔄 새로고침 또는 첫 방문
-    // sessionStorage: 같은 탭에서만 살아있음 (뒤로가기는 값이 남아있음)
-    const seen = sessionStorage.getItem("splashSeen");
-
-    if (seen) {
-        // 🟡 같은 탭에서 두 번째 이후 새로고침이면 스플래시 보여줘야 하니까
-        // 여기서 표시를 초기화시키고 보여줌
-        sessionStorage.removeItem("splashSeen");
-
-        setTimeout(() => {
-            document.getElementById("splash").classList.add("hide");
-        }, 10);
-    } else {
-        // 🟢 첫 방문 → 1.8초 애니메이션 실행 후 hide
-        setTimeout(() => {
-            document.getElementById("splash").classList.add("hide");
-            sessionStorage.setItem("splashSeen", "true");
-        }, 1800);
-    }
+    // 첫 방문 or 새로고침 → 스플래시 동작
+    setTimeout(() => {
+        document.getElementById("splash").classList.add("hide");
+    }, 1800);
 }
 </script>
 
