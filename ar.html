@@ -5,29 +5,139 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AR 키오스크 가이드</title>
     <link rel="stylesheet" href="style.css">
+
+    <style>
+        body {
+            background: #f5f7fb;
+            font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Noto Sans KR", system-ui, sans-serif;
+            text-align: center;
+            padding: 20px;
+        }
+
+        h1 {
+            font-size: 28px;
+            font-weight: 800;
+            margin-bottom: 10px;
+        }
+
+        #kiosk-container {
+            position: relative;
+            margin: 0 auto;
+            width: 90vw;
+            max-width: 480px;
+            border-radius: 16px;
+            overflow: hidden;
+            border: 3px solid #d3e5ff;
+            background: #000;
+        }
+
+        #video {
+            width: 100%;
+            display: block;
+        }
+
+        #ar-overlay {
+            position: absolute;
+            inset: 0;
+            z-index: 10;
+        }
+
+        .explain-box {
+            margin: 18px auto;
+            padding: 16px 18px;
+            background: #fff7e3;
+            border-radius: 14px;
+            border: 1px solid #ffd17a;
+            font-size: 17px;
+            line-height: 1.6;
+            text-align: left;
+            max-width: 480px;
+        }
+
+        button {
+            padding: 14px 20px;
+            font-size: 18px;
+            border-radius: 10px;
+            border: none;
+            margin: 6px;
+            cursor: pointer;
+            font-weight: 700;
+        }
+
+        #cameraButton {
+            background: #3b82f6;
+            color: white;
+        }
+
+        #scanButton {
+            background: #22c55e;
+            color: white;
+        }
+
+        #voiceButton {
+            background: #8b5cf6;
+            color: white;
+        }
+
+        #ocr-output, #voice-output {
+            font-size: 18px;
+            margin-top: 10px;
+            font-weight: 600;
+            color: #444;
+        }
+
+        .back-link {
+            margin-top: 28px;
+            font-size: 18px;
+        }
+
+        .back-link a {
+            color: #2563eb;
+            font-weight: 700;
+            font-size: 19px;
+        }
+    </style>
 </head>
+
 <body>
+
     <h1>AR 키오스크 가이드</h1>
+
+    <div class="explain-box">
+        📸 <strong>휴대폰 카메라로 실제 키오스크 화면을 비춰주세요</strong><br><br>
+        이렇게 하시면 됩니다!<br>
+        1) 아래 파란 버튼 <strong>카메라 켜기</strong>를 누릅니다<br>
+        2) 키오스크 화면이 보이도록 휴대폰을 가져갑니다<br>
+        3) 초록색 <strong>스캔</strong>을 누르면 눌러야 할 곳이 표시됩니다
+    </div>
+
     <div id="kiosk-container">
         <video id="video" playsinline autoplay muted loop></video>
         <div id="ar-overlay"></div>
     </div>
+
     <div id="controls">
         <button id="cameraButton">카메라 켜기</button>
-        <button id="scanButton" style="display: none;">스캔</button>
+        <button id="scanButton" style="display:none;">스캔</button>
         <p>인식된 텍스트: <span id="ocr-output"></span></p>
     </div>
-    <hr>
+
+    <hr style="margin: 30px 0;">
+
     <div id="voice-controls">
         <button id="voiceButton">음성인식 시작</button>
         <p>음성 명령: <span id="voice-output"></span></p>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/tesseract.js@v5/dist/tesseract.min.js"></script>
 
     <div class="back-link">
-    처음 화면으로 돌아가려면<br><a href="index.html" onclick="sessionStorage.setItem('navigateFromPage', 'true')">
-    여기를 눌러주세요</a>
-    </div>    
+        처음 화면으로 돌아가려면<br>
+        <a href="index.html" onclick="sessionStorage.setItem('navigateFromPage','true')">
+            여기를 눌러주세요
+        </a>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/tesseract.js@v5/dist/tesseract.min.js"></script>
     <script src="script.js"></script>
+
 </body>
 </html>
