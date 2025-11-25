@@ -42,6 +42,14 @@
             z-index: 10;
         }
 
+        /* 🔥 추가된 부분 — 캡처 확대/찌그러짐 방지 */
+        #ar-overlay.frozen {
+            background-size: contain !important;
+            background-position: center center !important;
+            background-repeat: no-repeat !important;
+        }
+        /* 🔥 여기까지 */
+
         .explain-box {
             margin: 18px auto;
             padding: 16px 18px;
