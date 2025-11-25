@@ -71,12 +71,13 @@ function freezeSnapshot(canvas) {
 
         arOverlay.classList.add('frozen');
         arOverlay.style.backgroundImage = `url(${url})`;
-        arOverlay.style.backgroundRepeat = 'no-repeat';
 
-        // 🔥 확대/cover 제거 → 원본 그대로 표시
-        arOverlay.style.backgroundSize = "100% 100%";
-        arOverlay.style.backgroundPosition = "center";
+        // 🔥 확대 현상 방지 (contain + center)
+        arOverlay.style.backgroundSize = "contain";
+        arOverlay.style.backgroundPosition = "center center";
+        arOverlay.style.backgroundRepeat = "no-repeat";
 
+        // 오버레이 크기를 비디오 크기와 동일하게 유지
         arOverlay.style.width  = `${video.clientWidth}px`;
         arOverlay.style.height = `${video.clientHeight}px`;
 
@@ -178,7 +179,7 @@ cameraButton.addEventListener('click', async () => {
 
 
 // ==============================
-// 6. OCR (흑백 처리 없이 컬러 그대로)
+// 6. OCR (컬러 그대로)
 // ==============================
 
 async function recognizeText() {
@@ -196,7 +197,6 @@ async function recognizeText() {
 
     const ctx = canvas.getContext('2d', { willReadFrequently: true });
 
-    // 🔵 컬러 그대로 저장 (흑백/대비 제거)
     ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
 
     const { data: { words } } = await worker.recognize(canvas);
@@ -242,7 +242,7 @@ async function recognizeText() {
 
 
 // ==============================
-// 7. OCR + Freeze (흑백 제거 버전)
+// 7. OCR + Freeze
 // ==============================
 
 async function recognizeTextAndFreeze() {
@@ -260,7 +260,6 @@ async function recognizeTextAndFreeze() {
 
     const ctx = canvas.getContext('2d', { willReadFrequently: true });
 
-    // 🔵 역시 컬러 그대로
     ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
 
     const { data: { words } } = await worker.recognize(canvas);
@@ -308,7 +307,7 @@ scanButton.addEventListener('click', () => {
 
 
 // ==============================
-// 9. 음성인식 (동일)
+// 9. 음성인식
 // ==============================
 
 const voiceButton = document.getElementById('voiceButton');
