@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>브랜드별 키오스크 연습 - 키오도움</title>
+    <style>
+        /* 전체 화면 스타일 (index와 통일) */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo",
+                "Noto Sans KR", system-ui, sans-serif;
+            background: #f5f7fb;
+            color: #111;
+        }
+
+        .page {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 24px 16px 40px;
+        }
+
+        /* 로고 + 제목 영역 */
+        .header {
+            text-align: center;
+            margin-bottom: 16px;
+        }
+
+        .logo {
+            width: 140px;
+            max-width: 50vw;
+            margin: 0 auto 8px;
+            display: block;
+        }
+
+        .title-main {
+            font-size: 26px;
+            font-weight: 700;
+        }
+
+        .title-sub {
+            margin-top: 8px;
+            font-size: 18px;
+            color: #444;
+        }
+
+        /* 안내 문구 */
+        .help-text {
+            margin-top: 20px;
+            padding: 14px 16px;
+            background: #fff7e3;
+            border-radius: 14px;
+            border: 1px solid #ffd17a;
+            font-size: 17px;
+            line-height: 1.6;
+        }
+
+        .help-text strong {
+            font-weight: 700;
+        }
+
+        /* 브랜드 선택 영역 */
+        .mode-title {
+            margin-top: 28px;
+            margin-bottom: 12px;
+            font-size: 20px;
+            font-weight: 600;
+        }
+
+        .brand-wrapper {
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+            margin-top: 8px;
+        }
+
+        @media (min-width: 720px) {
+            .brand-wrapper {
+                flex-direction: row;
+            }
+        }
+
+        .brand-card {
+            flex: 1;
+            padding: 20px 20px;
+            background: #ffffff;
+            border-radius: 18px;
+            border: 2px solid #d0e4ff;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.06);
+            cursor: pointer;
+            text-align: left;
+            transition: transform 0.15s ease, box-shadow 0.15s ease,
+                border-color 0.15s ease, background 0.15s ease;
+        }
+
+        .brand-card:focus,
+        .brand-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
+            border-color: #3c8dff;
+            background: #f7fbff;
+            outline: none;
+        }
+
+        .brand-name {
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: #265bbd;
+        }
+
+        .brand-desc {
+            font-size: 16px;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        .back-link {
+            margin-top: 28px;
+            font-size: 15px;
+            text-align: center;
+        }
+
+        .back-link a {
+            color: #265bbd;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .back-link a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+<div class="page">
+    <!-- 로고 + 제목 -->
+    <header class="header">
+        <!-- 여기 src에 실제 로고 파일 이름 맞춰주기 -->
+        <img src="logo.png" alt="키오도움 로고" class="logo" />
+
+        <div class="title-main">브랜드별 키오스크 연습</div>
+        <div class="title-sub">어떤 가게 키오스크를 연습해 보실까요?</div>
+    </header>
+
+    <!-- 안내 문구 -->
+    <section class="help-text">
+        <strong>연습하고 싶은 가게 이름을 눌러 주세요.</strong><br />
+        실제 가게 방문 전에,<br />
+        미리 주문하는 연습을 해 봐요!
+    </section>
+
+    <!-- 브랜드 선택 -->
+    <section>
+        <div class="mode-title">연습할 브랜드를 선택하세요</div>
+
+        <div class="brand-wrapper">
+
+            <!-- 롯데리아 -->
+            <button class="brand-card" onclick="location.href='https://rladhekd.github.io/kiosk-ui/'">
+                <div class="brand-name">롯데리아</div>
+            </button>
+
+            <!-- 공차 -->
+            <button class="brand-card" onclick="location.href='gongindex.html'">
+                <div class="brand-name">공차</div>
+            </button>
+
+        </div>
+    </section>
+
+    <!-- 뒤로가기(처음 화면) 안내 -->
+    <div class="back-link">
+        처음 화면으로 돌아가려면<br />
+        <a href="index.html" onclick="sessionStorage.setItem('navigateFromPage', 'true')">
+    여기를 눌러 주세요.</a>
+    </div>
+</div>
+</body>
+</html>
