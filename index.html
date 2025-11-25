@@ -221,20 +221,22 @@
     </div>
 
     <script>
-    // 스플래시를 이전에 본 적 있는지 확인
-    const splashSeen = localStorage.getItem("splashShown");
+// 🔥 이번 브라우저 세션에서 스플래시를 봤는지 확인
+// (세션: 새 탭 열 때마다 새로 시작됨)
+const splashSeen = sessionStorage.getItem("splashShown");
 
-    if (splashSeen) {
-        // 이미 본 적 있으면 스플래시 바로 숨기기
-        document.getElementById("splash").style.display = "none";
-    } else {
-        // 처음 방문 → 스플래시 보여주고, 이후에는 안 보이게 기록
-        setTimeout(() => {
-            document.getElementById("splash").classList.add("hide");
-            localStorage.setItem("splashShown", "true");
-        }, 1800);
-    }
-    </script>
+if (splashSeen) {
+    // 이미 봤으면 다시 보여주지 않음
+    document.getElementById("splash").style.display = "none";
+} else {
+    // 처음이면 스플래시 실행
+    setTimeout(() => {
+        document.getElementById("splash").classList.add("hide");
+        // 이번 세션 동안만 기록
+        sessionStorage.setItem("splashShown", "true");
+    }, 1800);
+}
+</script>
 
 </body>
 </html>
