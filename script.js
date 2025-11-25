@@ -73,6 +73,10 @@ function freezeSnapshot(canvas) {
         arOverlay.style.backgroundImage = `url(${url})`;
         arOverlay.style.backgroundRepeat = 'no-repeat';
 
+        // 🔥 확대/cover 제거 → 원본 그대로 표시
+        arOverlay.style.backgroundSize = "100% 100%";
+        arOverlay.style.backgroundPosition = "center";
+
         arOverlay.style.width  = `${video.clientWidth}px`;
         arOverlay.style.height = `${video.clientHeight}px`;
 
