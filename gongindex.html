@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>공차 키오스크 학습 모드</title>
+  <link rel="stylesheet" href="gongstyle.css" />
+</head>
+<body>
+  <div class="phone-frame">
+    <div class="phone-notch"></div>
+    <header>
+      <div class="brand-row">
+        <div class="brand-name">GONG CHA · 학습 모드</div>
+        <div class="mode-pill">연습 중</div>
+      </div>
+      <div class="mission-text">미션: 타로 밀크티 아이스를 주문해 보세요</div>
+      <div class="mission-sub">
+        실제 공차 키오스크처럼 카테고리 → 메뉴 → 옵션 → 결제까지 연습합니다.
+      </div>
+    </header>
+
+    <main class="screen" id="screen">
+      <!-- JS로 동적 렌더링 -->
+    </main>
+
+    <div class="bottom-bar">
+      <div class="cart-summary" id="cart-summary">
+        <span class="cart-title" id="cart-title">선택된 메뉴 없음</span>
+        <span class="cart-sub" id="cart-sub">메뉴를 선택하면 여기에서 확인할 수 있어요.</span>
+      </div>
+      <button class="pay-btn" id="pay-btn" disabled>결제하기</button>
+    </div>
+  </div>
+
+  <script src="js/app.js"></script>
+</body>
+</html>
