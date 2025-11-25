@@ -185,7 +185,7 @@ async function recognizeText() {
     ocrOutput.textContent = '텍스트를 인식 중입니다...';
 
     const canvas = document.createElement('canvas');
-    const scale = 2;
+    const scale = 1;
 
     canvas.width = video.videoWidth * scale;
     canvas.height = video.videoHeight * scale;
